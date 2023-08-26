@@ -1,0 +1,43 @@
+{
+  "id" : "just-text-enrichers",
+  "title" : "Just - Text Enrichers",
+  "description" : "A set of straightforward text editor enhancers designed to enhance interactivity within the Journal.",
+  "version" : "1.0.0",
+  "authors" : [
+    {
+      "name" : "Gerark"
+    }
+  ],
+  "relationships" : {
+    "requires" : [
+      {
+        "id" : "socketlib",
+        "type" : "module"
+      }
+    ]
+  },
+  "compatibility" : {
+    "minimum" : "10",
+    "verified" : "11"
+  },
+  "esmodules" : [
+    "index.js"
+  ],
+  "styles" : [
+    "style.css"
+  ],
+  "languages" : [
+    {
+      "lang" : "en",
+      "name" : "English",
+      "path" : "lang/en.json"
+    }
+  ],
+  "socket" : false,
+  "protected" : false,
+  "coreTranslation" : false,
+  "library" : false,
+  "url" : "https://github.com/Gerark/just-text-enrichers",
+  "manifest" : "https://github.com/Gerark/just-text-enrichers/releases/download/1.0.0/module.json",
+  "download" : "https://github.com/Gerark/just-text-enrichers/releases/download/1.0.0/module.zip"
+}
