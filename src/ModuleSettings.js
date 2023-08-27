@@ -1,13 +1,5 @@
 import { locSettings, Constants } from "./ModuleUtils.js";
 import { StoreUpdater } from "./StoreUpdater.js";
-import {
-    canSelectWhenRoundIsOver,
-    overrideEndTurnButton,
-    canLastActorSelectThemselves,
-    previousActorsDrawerOpen,
-    selectionWindowSize, selectionWindowPosition
-} from "./ModuleStore.js";
-import { ConfigurationWindowApplicationProxy } from "./view/configuration-window/ConfigurationWindowApplication.js";
 import { get as svelteGet } from "svelte/store";
 
 export class ModuleSettings
@@ -50,6 +42,8 @@ export class ModuleSettings
 
     static _registerSettings()
     {
+        /*
+        Example
         game.settings.registerMenu(Constants.ModuleName, "configuration", {
             name: locSettings("configure.button"),
             label: locSettings("configure.button"),
@@ -58,11 +52,7 @@ export class ModuleSettings
             restricted: true
         });
         this._addSetting(Constants.Options.OverrideNextTurnButton, Boolean, true, true, overrideEndTurnButton);
-        this._addSetting(Constants.Options.CanSelectWhenRoundIsOver, Boolean, true, false, canSelectWhenRoundIsOver);
-        this._addSetting(Constants.Options.CanLastActorSelectThemselves, Boolean, false, false, canLastActorSelectThemselves);
-        this._addSetting(Constants.Options.PreviousActorsDrawerOpen, Boolean, true, false, previousActorsDrawerOpen, false);
-        this._addSetting(Constants.Options.SelectionWindowSize, String, Constants.WindowSize.Normal.id, false, selectionWindowSize);
-        this._addSetting(Constants.Options.SelectionWindowPosition, String, "center", false, selectionWindowPosition);
+        */
     }
 
     static _addSetting(id, type, defaultValue, requiresReload, storeValue, isGlobal = true)

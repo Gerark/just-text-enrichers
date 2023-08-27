@@ -3,6 +3,7 @@
     "SystemMessage": {
     },
     "Settings": {
+      "ConfigNoPermission": "You have no permission to change initiative configuration."
     }
   }
 }
