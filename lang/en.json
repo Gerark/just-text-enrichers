@@ -1,9 +1,12 @@
 {
-  "JTE": {
-    "SystemMessage": {
+  "JTE" : {
+    "Enricher" : {
+      "selectAction.text" : "Select Action"
     },
-    "Settings": {
-      "ConfigNoPermission": "You have no permission to change initiative configuration."
+    "SystemMessage" : {
+    },
+    "Settings" : {
+      "ConfigNoPermission" : "You have no permission to change initiative configuration."
     }
   }
 }

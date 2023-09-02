@@ -1,6 +1,10 @@
-import { NotificationUtils, ModuleUtils, ReasonType, Constants } from "./ModuleUtils.js";
+import { Constants } from "./ModuleUtils.js";
 import { ModuleSettings } from "./ModuleSettings.js";
+import MacroEnricher from "./MacroEnricher.js";
+import { actionFilter } from "./ModuleStore.js";
+import { NotificationUtils, ReasonType } from "./NotificationUtils.js";
 import ConfigurationWindowApplication from "./view/configuration-window/ConfigurationWindowApplication.js";
+import ActionSelectorApplication from "./view/action-selector/ActionSelectorWindowApplication.js";
 
 export class ModuleAPI
 {
@@ -11,24 +15,17 @@ export class ModuleAPI
 
     constructor()
     {
+        this.closingActionSelector = false;
+        this.requestActionSelector = false;
         this.configWindow = null;
+        this.actionSelectorWindow = null;
+        this.enrichers = [];
+        this._populateEnrichers();
     }
 
-    async installCommonMacros()
+    executeAction(action)
     {
-        await ModuleUtils.installMacro(
-            `Open Configuration`,
-            `game.modules.get("just-popcorn-initiative").api.showConfig();`,
-            `icons/svg/dice-target.svg`);
-        await ModuleUtils.installMacro(
-            `Open Selection Window`,
-            `game.modules.get("just-popcorn-initiative").api.showSelectionWindowOrPassTurn();`,
-            `icons/svg/dice-target.svg`);
-    }
-
-    areCommonMacrosInstalled()
-    {
-        return ModuleUtils.isMacroInstalled("Open Configuration") && ModuleUtils.isMacroInstalled("Open Selection Window");
+        console.log(action);
     }
 
     showConfig()
@@ -50,6 +47,42 @@ export class ModuleAPI
         }
     }
 
+    showActionSelector(x, y)
+    {
+        if (this.actionSelectorWindow)
+        {
+            if (this.closingActionSelector)
+            {
+                this.requestActionSelector = { x, y };
+            }
+            else
+            {
+                this.actionSelectorWindow.render();
+            }
+        }
+        else
+        {
+            this.requestActionSelector = null;
+            this.actionSelectorWindow = new ActionSelectorApplication().render(true, { focus: true, top: y, left: x });
+        }
+    }
+
+    closeActionSelector()
+    {
+        this.closingActionSelector = true;
+        this.actionSelectorWindow?.close().then(() =>
+        {
+            actionFilter.set("");
+            this.closingActionSelector = false;
+            this.actionSelectorWindow = null;
+            if (this.requestActionSelector)
+            {
+                this.showActionSelector(this.requestActionSelector.x, this.requestActionSelector.y);
+            }
+        }
+        );
+    }
+
     closeConfig()
     {
         ModuleSettings.save().then(
@@ -59,5 +92,12 @@ export class ModuleAPI
                 this.configWindow = null;
             }
         );
+    }
+
+    _populateEnrichers()
+    {
+        const macroEnricher = MacroEnricher.create();
+        CONFIG.TextEditor.enrichers.push(macroEnricher.data);
+        this.enrichers.push(macroEnricher);
     }
 }

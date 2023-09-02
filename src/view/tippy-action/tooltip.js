@@ -17,7 +17,11 @@ export function tooltip(node, params)
     const tip = tippy(node, { ...params });
 
     return {
-        update: () => tip.setProps({ ...params }),
+        update: (newParams) =>
+        {
+            console.log(newParams);
+            tip.setProps({ ...newParams });
+        },
         destroy: () => tip.destroy()
     };
 }

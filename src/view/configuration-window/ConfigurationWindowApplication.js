@@ -26,9 +26,9 @@ export default class ConfigurationWindowApplication extends SvelteApplication
 {
     static get defaultOptions()
     {
-        const moduleAPI = game.modules.get("just-popcorn-initiative").api;
+        const moduleAPI = game.modules.get("just-text-enrichers").api;
         return foundry.utils.mergeObject(super.defaultOptions, {
-            id: 'popcorn-initiative-config',
+            id: 'text-enrichers-config',
             classes: ['tjs-essential-svelte-esm'],
             resizable: true,
             title: locSettings("window-title"),
