@@ -1,9 +1,7 @@
 import { writable, derived } from "svelte/store";
-import filterActions from "./ActionFilterer.js";
+import filterItems from "./view/UTreeView/ItemFilterer.js";
 
 export const settings = writable([]);
-
-export const actionFilter = writable("");
 
 export const actions = writable([
     {
@@ -708,12 +706,3 @@ export const actions = writable([
     }
 ]
 );
-
-export const filteredActions = derived([actionFilter, actions], ([$filter, $actions]) =>
-{
-    if ($filter === "")
-    {
-        return $actions;
-    }
-    return filterActions($actions, $filter);
-});

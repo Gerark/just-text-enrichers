@@ -2,7 +2,8 @@ import { NotificationUtils } from "./NotificationUtils.js";
 import { getHTML, Constants } from "./view/DefaultEnricherStyle.js";
 import { ModuleAPI } from "./ModuleAPI.js";
 import { TJSContextMenu } from "@typhonjs-fvtt/svelte-standard/application";
-import SimpleButton from "./view/SimpleButton.svelte";
+import ActionSelectorV2 from "./view/action-selector/ActionSelectorContextMenu.svelte";
+import "./global-styles.scss";
 
 export default class MacroEnricher
 {
@@ -15,7 +16,10 @@ export default class MacroEnricher
             enricher: (match, { async = false, relativeTo } = {}) => this.enrich(match)
         };
 
-        Hooks.on("renderJournalPageSheet", (sheet, html, data) => { this._registerEvents(html); });
+        Hooks.on("renderJournalPageSheet", (sheet, html, data) =>
+        {
+            this._registerEvents(html);
+        });
     }
 
     _registerEvents(html)
@@ -46,15 +50,7 @@ export default class MacroEnricher
 
     async _onClickConfig(event, data)
     {
-        ModuleAPI.instance.showActionSelector(event.clientX, event.clientY);
-        /* TJSContextMenu.create({
-id: 'better-macros-directory-context-menu',
-items: [{ label: "HELLO", image: "" }, { label: "HELLO 2", image: "" }],
-event
-});*/
-        /* new SimpleButton({
-target: event.currentTarget
-});*/
+        ModuleAPI.instance.showActionSelector(event, event.clientX, event.clientY);
     }
 
     async _onClick(data)

@@ -2,16 +2,16 @@ import fuzzysort from "fuzzysort";
 
 /**
  *
- * @param actions
+ * @param items
  *
  * @param filter
  */
-export default function filterActions(actions, filter)
+export default function filterItems(items, filter)
 {
     const filteredTree = [];
-    actions.forEach((action) =>
+    items.forEach((item) =>
     {
-        const [result, tree] = filterNode(action, filter, false);
+        const [result, tree] = filterNode(item, filter, false);
         if (result)
         {
             filteredTree.push(tree);
@@ -44,8 +44,8 @@ function filterNode(node, filter, parentResult)
     let rootResult = result && result.score >= -1000;
     if (rootResult)
     {
-        root.label = fuzzysort.highlight(result, open = '<span class="just-text-enricher-highlightedLabel"><b>', close =
-       '</b></span>');
+        root.label = fuzzysort.highlight(result, open = '<span class="highlightedLabel"><b>', close =
+            '</b></span>');
     }
     rootResult |= parentResult;
     let childResult = false;

@@ -1,0 +1,93 @@
+@import 'tippy-base';
+
+$theme-name: "infra";
+$tooltip-theme-name: tooltip#{$theme-name};
+
+.tippy-box[data-theme~=#{$tooltip-theme-name}] {
+  --bg-primary-color: #FFEBEB;
+  --bg-secondary-color: #FFD6D6;
+  --folder-label-color: #555555;
+}
+
+.tooltipContent[data-theme=#{$tooltip-theme-name}] {
+  --bg-secondary-color: #FFD6D6;
+}
+
+.just-tree-view-menu[data-theme=#{$theme-name}] {
+  --bg-primary-color: #FFEBEB; // Very Light Red
+  --bg-secondary-color: #FFD6D6; // Light Red
+  --bg-ternary-color: #FFC2C2; // Pale Red
+  --text-color: #333333; // Dark Gray
+  --active-color: #FF6666; // Coral Red
+  --scrollbar-color: #D1D1D1; // Gray
+  --active-scrollbar-color: #A0A0A0; // Light Gray
+  --arrow-color: #666666; // Gray
+  --arrow-active-color: #999999; // Light Gray
+  --leaf-color: #77c5f9; // Blue for contrast
+  --item-hover-color: #CCCCCC; // Light Gray
+  --folder-label-color: #555555; // Gray
+  --highlighted-text-color: #1a1a1a;
+  --highlighted-text-bkg: #8bc24a;
+
+  .just-separator {
+    --thickness: 1px;
+    --color: var(--scrollbar-color);
+  }
+
+  .title {
+  }
+
+  .content-bkg {
+  }
+
+  .content {
+    .description {
+    }
+  }
+
+  .content::-webkit-scrollbar {
+  }
+
+  .content::-webkit-scrollbar-track {
+  }
+
+  .content::-webkit-scrollbar-track:hover {
+  }
+
+  .content::-webkit-scrollbar-thumb {
+  }
+
+  .content::-webkit-scrollbar-thumb:hover {
+  }
+
+  .tree-view-item {
+    .header {
+      .icon {
+      }
+
+      .leafIcon {
+      }
+
+      .foldIcon:hover {
+      }
+
+      .folderLabel {
+      }
+
+      .leafLabel {
+      }
+
+      .highlightedLabel {
+      }
+    }
+
+    .leafHeader {
+    }
+
+    .header-bkg:hover {
+    }
+
+    .header-bkg:focus {
+    }
+  }
+}

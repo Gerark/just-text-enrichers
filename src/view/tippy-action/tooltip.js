@@ -1,5 +1,4 @@
 import tippy from "tippy.js";
-import "./tippy-custom.scss";
 
 /**
  *

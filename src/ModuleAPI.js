@@ -1,10 +1,8 @@
 import { Constants } from "./ModuleUtils.js";
 import { ModuleSettings } from "./ModuleSettings.js";
 import MacroEnricher from "./MacroEnricher.js";
-import { actionFilter } from "./ModuleStore.js";
 import { NotificationUtils, ReasonType } from "./NotificationUtils.js";
-import ConfigurationWindowApplication from "./view/configuration-window/ConfigurationWindowApplication.js";
-import ActionSelectorApplication from "./view/action-selector/ActionSelectorWindowApplication.js";
+import ActionSelectorContextMenu from "./view/action-selector/ActionSelectorContextMenu.svelte";
 
 export class ModuleAPI
 {
@@ -15,10 +13,8 @@ export class ModuleAPI
 
     constructor()
     {
-        this.closingActionSelector = false;
-        this.requestActionSelector = false;
         this.configWindow = null;
-        this.actionSelectorWindow = null;
+        this.actionSelectorContextMenu = null;
         this.enrichers = [];
         this._populateEnrichers();
     }
@@ -38,7 +34,7 @@ export class ModuleAPI
             }
             else
             {
-                this.configWindow = new ConfigurationWindowApplication().render(true, { focus: true });
+                // this.configWindow = new ConfigurationWindowApplication().render(true, { focus: true });
             }
         }
         else
@@ -47,40 +43,31 @@ export class ModuleAPI
         }
     }
 
-    showActionSelector(x, y)
+    showActionSelector(event, x, y)
     {
-        if (this.actionSelectorWindow)
+        if (this.actionSelectorContextMenu)
         {
-            if (this.closingActionSelector)
-            {
-                this.requestActionSelector = { x, y };
-            }
-            else
-            {
-                this.actionSelectorWindow.render();
-            }
+            this.closeActionSelector();
         }
-        else
-        {
-            this.requestActionSelector = null;
-            this.actionSelectorWindow = new ActionSelectorApplication().render(true, { focus: true, top: y, left: x });
-        }
+
+        this.actionSelectorContextMenu = new ActionSelectorContextMenu({
+            target: document.body,
+            props: {
+                x,
+                y,
+                z: 9000,
+                moduleAPI: this
+            }
+        });
     }
 
     closeActionSelector()
     {
-        this.closingActionSelector = true;
-        this.actionSelectorWindow?.close().then(() =>
+        if (this.actionSelectorContextMenu)
         {
-            actionFilter.set("");
-            this.closingActionSelector = false;
-            this.actionSelectorWindow = null;
-            if (this.requestActionSelector)
-            {
-                this.showActionSelector(this.requestActionSelector.x, this.requestActionSelector.y);
-            }
+            this.actionSelectorContextMenu.$destroy();
+            this.actionSelectorContextMenu = null;
         }
-        );
     }
 
     closeConfig()

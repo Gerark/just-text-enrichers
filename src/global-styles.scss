@@ -1,59 +1,6 @@
 $primary-color: #9e9e9e;
 $secondary-color: #c0c0c0;
-$active-color: #0070e0;
-$scrollbar-color: #575757;
-$active-scrollbar-color: #808080;
 $bg-color-primary: #383838;
-$bg-color-secondary: #1a1a1a;
-$bg-color-ternary: #0f0f0f;
-$item-hover-color: #242424;
-$action-color: #0070e0;
-$icon-color: #77c5f9;
-
-$primary-disabled-color: #FF8800AA;
-$secondary-disabled-color: #FFFFFF55;
-$error-color: #FF3300;
-$bg-color-table-item-odd: #181818EE;
-$bg-color-table-item-even: #202020EE;
-
-.button {
-  background: $bg-color-primary;
-  color: $primary-color;
-  border-color: $primary-color;
-}
-
-.button.cancel {
-  border-color: $error-color;
-  color: $error-color;
-}
-
-.button:hover {
-  border-color: $secondary-color;
-  color: $secondary-color;
-  box-shadow: none;
-}
-
-.button:active {
-  border-color: $secondary-color;
-  color: $primary-color;
-  box-shadow: none;
-  scale: 0.98;
-}
-
-.button:focus {
-  border-color: $primary-color;
-  color: $primary-color;
-  box-shadow: none;
-}
-
-.button.icon {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  gap: 5px;
-}
 
 .just-text-enricher {
   background: $bg-color-primary;
@@ -95,9 +42,4 @@ $bg-color-table-item-even: #202020EE;
 
 .just-text-enricher-label {
   padding: 0 4px 0 2px;
-}
-
-.just-text-enricher-highlightedLabel {
-  background: #8bc24a;
-  color: $bg-color-secondary;
 }
